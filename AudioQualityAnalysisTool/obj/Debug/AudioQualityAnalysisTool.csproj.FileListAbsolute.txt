@@ -19,3 +19,5 @@ D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQua
 D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.AudioQualityAnalysisTool.resources
 D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.Properties.Resources.resources
 D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.csproj.GenerateResource.Cache
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\bin\Debug\NAudio.dll
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\bin\Debug\NAudio.xml

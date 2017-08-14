@@ -33,7 +33,7 @@
             this.AnalysisPage = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.sourceList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Refreshbtn = new System.Windows.Forms.Button();
@@ -108,7 +108,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.listView1);
+            this.splitContainer2.Panel1.Controls.Add(this.sourceList);
             // 
             // splitContainer2.Panel2
             // 
@@ -120,19 +120,19 @@
             this.splitContainer2.SplitterDistance = 434;
             this.splitContainer2.TabIndex = 0;
             // 
-            // listView1
+            // sourceList
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.sourceList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(434, 233);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.sourceList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceList.Location = new System.Drawing.Point(0, 0);
+            this.sourceList.MultiSelect = false;
+            this.sourceList.Name = "sourceList";
+            this.sourceList.Size = new System.Drawing.Size(434, 233);
+            this.sourceList.TabIndex = 0;
+            this.sourceList.UseCompatibleStateImageBehavior = false;
+            this.sourceList.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -151,6 +151,7 @@
             this.Refreshbtn.TabIndex = 0;
             this.Refreshbtn.Text = "Refresh Source";
             this.Refreshbtn.UseVisualStyleBackColor = true;
+            this.Refreshbtn.Click += new System.EventHandler(this.Refreshbtn_Click);
             // 
             // Recordbtn
             // 
@@ -209,7 +210,7 @@
         private System.Windows.Forms.TabPage AnalysisPage;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView sourceList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button Stopbtn;
