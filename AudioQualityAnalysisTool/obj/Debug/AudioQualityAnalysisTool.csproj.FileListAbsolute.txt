@@ -10,3 +10,12 @@ C:\Users\SheenaKuo\Downloads\Programs\AudioQualityAnalysisTool\AudioQualityAnaly
 C:\Users\SheenaKuo\Downloads\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\bin\Debug\AudioQualityAnalysisTool.exe.config
 C:\Users\SheenaKuo\Downloads\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.exe
 C:\Users\SheenaKuo\Downloads\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.pdb
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\bin\Debug\AudioQualityAnalysisTool.exe.config
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.exe
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.pdb
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\bin\Debug\AudioQualityAnalysisTool.exe
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\bin\Debug\AudioQualityAnalysisTool.pdb
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.csprojResolveAssemblyReference.cache
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.AudioQualityAnalysisTool.resources
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.Properties.Resources.resources
+D:\Programs\AudioQualityAnalysisTool\AudioQualityAnalysisTool\obj\Debug\AudioQualityAnalysisTool.csproj.GenerateResource.Cache
