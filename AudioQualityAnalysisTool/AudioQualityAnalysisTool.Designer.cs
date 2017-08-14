@@ -30,16 +30,16 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.RecordPage = new System.Windows.Forms.TabPage();
-            this.AnalysisPage = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.sourceList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Refreshbtn = new System.Windows.Forms.Button();
-            this.Recordbtn = new System.Windows.Forms.Button();
-            this.Stopbtn = new System.Windows.Forms.Button();
             this.Playbtn = new System.Windows.Forms.Button();
+            this.Stopbtn = new System.Windows.Forms.Button();
+            this.Recordbtn = new System.Windows.Forms.Button();
+            this.Refreshbtn = new System.Windows.Forms.Button();
+            this.AnalysisPage = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.RecordPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -57,7 +57,7 @@
             this.tabControl1.Controls.Add(this.AnalysisPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(588, 438);
@@ -67,24 +67,13 @@
             // 
             this.RecordPage.Controls.Add(this.splitContainer1);
             this.RecordPage.Location = new System.Drawing.Point(4, 22);
-            this.RecordPage.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.RecordPage.Margin = new System.Windows.Forms.Padding(1);
             this.RecordPage.Name = "RecordPage";
-            this.RecordPage.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.RecordPage.Padding = new System.Windows.Forms.Padding(1);
             this.RecordPage.Size = new System.Drawing.Size(580, 412);
             this.RecordPage.TabIndex = 0;
             this.RecordPage.Text = "Recorder";
             this.RecordPage.UseVisualStyleBackColor = true;
-            // 
-            // AnalysisPage
-            // 
-            this.AnalysisPage.Location = new System.Drawing.Point(4, 22);
-            this.AnalysisPage.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.AnalysisPage.Name = "AnalysisPage";
-            this.AnalysisPage.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.AnalysisPage.Size = new System.Drawing.Size(580, 440);
-            this.AnalysisPage.TabIndex = 1;
-            this.AnalysisPage.Text = "Analysis";
-            this.AnalysisPage.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -143,6 +132,35 @@
             // 
             this.columnHeader2.Text = "Channels";
             // 
+            // Playbtn
+            // 
+            this.Playbtn.Location = new System.Drawing.Point(3, 82);
+            this.Playbtn.Name = "Playbtn";
+            this.Playbtn.Size = new System.Drawing.Size(133, 27);
+            this.Playbtn.TabIndex = 3;
+            this.Playbtn.Text = "Play";
+            this.Playbtn.UseVisualStyleBackColor = true;
+            // 
+            // Stopbtn
+            // 
+            this.Stopbtn.Location = new System.Drawing.Point(3, 130);
+            this.Stopbtn.Name = "Stopbtn";
+            this.Stopbtn.Size = new System.Drawing.Size(133, 27);
+            this.Stopbtn.TabIndex = 2;
+            this.Stopbtn.Text = "Stop";
+            this.Stopbtn.UseVisualStyleBackColor = true;
+            this.Stopbtn.Click += new System.EventHandler(this.Stopbtn_Click);
+            // 
+            // Recordbtn
+            // 
+            this.Recordbtn.Location = new System.Drawing.Point(3, 49);
+            this.Recordbtn.Name = "Recordbtn";
+            this.Recordbtn.Size = new System.Drawing.Size(133, 27);
+            this.Recordbtn.TabIndex = 1;
+            this.Recordbtn.Text = "Record";
+            this.Recordbtn.UseVisualStyleBackColor = true;
+            this.Recordbtn.Click += new System.EventHandler(this.Recordbtn_Click);
+            // 
             // Refreshbtn
             // 
             this.Refreshbtn.Location = new System.Drawing.Point(3, 3);
@@ -153,32 +171,16 @@
             this.Refreshbtn.UseVisualStyleBackColor = true;
             this.Refreshbtn.Click += new System.EventHandler(this.Refreshbtn_Click);
             // 
-            // Recordbtn
+            // AnalysisPage
             // 
-            this.Recordbtn.Location = new System.Drawing.Point(3, 49);
-            this.Recordbtn.Name = "Recordbtn";
-            this.Recordbtn.Size = new System.Drawing.Size(133, 27);
-            this.Recordbtn.TabIndex = 1;
-            this.Recordbtn.Text = "Record";
-            this.Recordbtn.UseVisualStyleBackColor = true;
-            // 
-            // Stopbtn
-            // 
-            this.Stopbtn.Location = new System.Drawing.Point(3, 130);
-            this.Stopbtn.Name = "Stopbtn";
-            this.Stopbtn.Size = new System.Drawing.Size(133, 27);
-            this.Stopbtn.TabIndex = 2;
-            this.Stopbtn.Text = "Stop";
-            this.Stopbtn.UseVisualStyleBackColor = true;
-            // 
-            // Playbtn
-            // 
-            this.Playbtn.Location = new System.Drawing.Point(3, 82);
-            this.Playbtn.Name = "Playbtn";
-            this.Playbtn.Size = new System.Drawing.Size(133, 27);
-            this.Playbtn.TabIndex = 3;
-            this.Playbtn.Text = "Play";
-            this.Playbtn.UseVisualStyleBackColor = true;
+            this.AnalysisPage.Location = new System.Drawing.Point(4, 22);
+            this.AnalysisPage.Margin = new System.Windows.Forms.Padding(1);
+            this.AnalysisPage.Name = "AnalysisPage";
+            this.AnalysisPage.Padding = new System.Windows.Forms.Padding(1);
+            this.AnalysisPage.Size = new System.Drawing.Size(580, 412);
+            this.AnalysisPage.TabIndex = 1;
+            this.AnalysisPage.Text = "Analysis";
+            this.AnalysisPage.UseVisualStyleBackColor = true;
             // 
             // AudioQualityAnalysisTool
             // 
@@ -186,7 +188,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 438);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "AudioQualityAnalysisTool";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Audio Quality Analysis Tool";

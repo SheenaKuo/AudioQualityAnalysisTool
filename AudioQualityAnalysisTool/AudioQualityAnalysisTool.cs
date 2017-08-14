@@ -35,5 +35,56 @@ namespace AudioQualityAnalysisTool
                 sourceList.Items.Add(item);
             }
         }
+
+        private NAudio.Wave.WaveIn sourceStream = null;
+        private NAudio.Wave.WaveFileWriter waveWriter = null;
+
+        private void Recordbtn_Click(object sender, EventArgs e)
+        {
+            if (sourceList.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a device.");
+                return;
+            }
+
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Wave File (*.wav) | *.wav;";
+            if (save.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+            int iDeviceNumber = sourceList.SelectedItems[0].Index;
+
+            sourceStream = new NAudio.Wave.WaveIn();
+            sourceStream.DeviceNumber = iDeviceNumber;
+            sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(44100, NAudio.Wave.WaveIn.GetCapabilities(iDeviceNumber).Channels);
+
+            sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
+            waveWriter = new NAudio.Wave.WaveFileWriter(save.FileName, sourceStream.WaveFormat);
+
+            sourceStream.StartRecording();
+        }
+
+        private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
+        {
+            if (waveWriter == null) return;
+
+            waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
+            waveWriter.Flush();
+        }
+
+        private void Stopbtn_Click(object sender, EventArgs e)
+        {
+            if (sourceStream != null)
+            {
+                sourceStream.StopRecording();
+                sourceStream.Dispose();
+                sourceStream = null;
+            }
+
+            if (waveWriter != null)
+            {
+                waveWriter.Dispose();
+                waveWriter = null;
+            }
+        }
     }
 }
