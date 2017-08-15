@@ -15,6 +15,7 @@ namespace AudioQualityAnalysisTool
         public AudioQualityAnalysisTool()
         {
             InitializeComponent();
+            Stopbtn.Enabled = false;
         }
 
         private void Refreshbtn_Click(object sender, EventArgs e)
@@ -51,6 +52,10 @@ namespace AudioQualityAnalysisTool
             save.Filter = "Wave File (*.wav) | *.wav;";
             if (save.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
+            Recordbtn.Enabled = false;
+            Playbtn.Enabled = false;
+            Stopbtn.Enabled = true;
+
             int iDeviceNumber = sourceList.SelectedItems[0].Index;
 
             sourceStream = new NAudio.Wave.WaveIn();
@@ -86,6 +91,10 @@ namespace AudioQualityAnalysisTool
             openfile.Filter = "Wave File (*.wav) | *.wav;";
             if (openfile.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
+            Recordbtn.Enabled = false;
+            Playbtn.Enabled = false;
+            Stopbtn.Enabled = true;
+
             wave = new NAudio.Wave.WaveFileReader(openfile.FileName);
             output = new NAudio.Wave.DirectSoundOut();
             output.Init(new NAudio.Wave.WaveChannel32(wave));
@@ -94,6 +103,10 @@ namespace AudioQualityAnalysisTool
 
         private void Stopbtn_Click(object sender, EventArgs e)
         {
+            Recordbtn.Enabled = true;
+            Playbtn.Enabled = true;
+            Stopbtn.Enabled = false;
+
             if (sourceStream != null)
             {
                 sourceStream.StopRecording();
