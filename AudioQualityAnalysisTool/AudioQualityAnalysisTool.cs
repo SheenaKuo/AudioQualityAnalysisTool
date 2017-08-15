@@ -71,6 +71,27 @@ namespace AudioQualityAnalysisTool
             waveWriter.Flush();
         }
 
+        private NAudio.Wave.WaveFileReader wave = null;
+        private NAudio.Wave.DirectSoundOut output = null;
+
+        private void Playbtn_Click(object sender, EventArgs e)
+        {
+            if (sourceList.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a device.");
+                return;
+            }
+
+            OpenFileDialog openfile = new OpenFileDialog();
+            openfile.Filter = "Wave File (*.wav) | *.wav;";
+            if (openfile.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+            wave = new NAudio.Wave.WaveFileReader(openfile.FileName);
+            output = new NAudio.Wave.DirectSoundOut();
+            output.Init(new NAudio.Wave.WaveChannel32(wave));
+            output.Play();
+        }
+
         private void Stopbtn_Click(object sender, EventArgs e)
         {
             if (sourceStream != null)
@@ -84,6 +105,19 @@ namespace AudioQualityAnalysisTool
             {
                 waveWriter.Dispose();
                 waveWriter = null;
+            }
+
+            if (wave != null)
+            {
+                wave.Dispose();
+                wave = null;
+            }
+
+            if (output != null)
+            {
+                output.Stop();
+                output.Dispose();
+                output = null;
             }
         }
     }
