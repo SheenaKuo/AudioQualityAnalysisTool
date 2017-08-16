@@ -18,6 +18,7 @@ namespace AudioQualityAnalysisTool
         private NAudio.Wave.DirectSoundOut output = null;
         private SaveFileDialog savefile = null;
         private OpenFileDialog openfile = null;
+        private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public AudioQualityAnalysisTool()
         {
@@ -61,6 +62,10 @@ namespace AudioQualityAnalysisTool
             Stopbtn.Enabled = true;
 
             RecordAudio();
+
+            timer.Enabled = true;
+            timer.Interval = 10000;
+            timer.Tick += new EventHandler(timer_Tick);
         }
 
         private void RecordAudio()
@@ -77,6 +82,28 @@ namespace AudioQualityAnalysisTool
             sourceStream.StartRecording();
         }
 
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if (sourceStream != null)
+            {
+                sourceStream.StopRecording();
+                sourceStream.Dispose();
+                sourceStream = null;
+            }
+
+            if (waveWriter != null)
+            {
+                waveWriter.Dispose();
+                waveWriter = null;
+            }
+
+            Recordbtn.Enabled = true;
+            Playbtn.Enabled = true;
+            Stopbtn.Enabled = false;
+            timer.Enabled = false;
+
+            timer.Stop();
+        }
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;
@@ -142,6 +169,11 @@ namespace AudioQualityAnalysisTool
                 output.Stop();
                 output.Dispose();
                 output = null;
+            }
+
+            if (timer != null)
+            {
+                timer.Stop();
             }
         }
     }
