@@ -12,6 +12,13 @@ namespace AudioQualityAnalysisTool
 {
     public partial class AudioQualityAnalysisTool : Form
     {
+        private NAudio.Wave.WaveIn sourceStream = null;
+        private NAudio.Wave.WaveFileWriter waveWriter = null;
+        private NAudio.Wave.WaveFileReader wave = null;
+        private NAudio.Wave.DirectSoundOut output = null;
+        private SaveFileDialog savefile = null;
+        private OpenFileDialog openfile = null;
+
         public AudioQualityAnalysisTool()
         {
             InitializeComponent();
@@ -37,9 +44,6 @@ namespace AudioQualityAnalysisTool
             }
         }
 
-        private NAudio.Wave.WaveIn sourceStream = null;
-        private NAudio.Wave.WaveFileWriter waveWriter = null;
-
         private void Recordbtn_Click(object sender, EventArgs e)
         {
             if (sourceList.SelectedItems.Count == 0)
@@ -48,14 +52,19 @@ namespace AudioQualityAnalysisTool
                 return;
             }
 
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Wave File (*.wav) | *.wav;";
-            if (save.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            savefile = new SaveFileDialog();
+            savefile.Filter = "Wave File (*.wav) | *.wav;";
+            if (savefile.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
             Recordbtn.Enabled = false;
             Playbtn.Enabled = false;
             Stopbtn.Enabled = true;
 
+            RecordAudio();
+        }
+
+        private void RecordAudio()
+        {
             int iDeviceNumber = sourceList.SelectedItems[0].Index;
 
             sourceStream = new NAudio.Wave.WaveIn();
@@ -63,7 +72,7 @@ namespace AudioQualityAnalysisTool
             sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(44100, NAudio.Wave.WaveIn.GetCapabilities(iDeviceNumber).Channels);
 
             sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
-            waveWriter = new NAudio.Wave.WaveFileWriter(save.FileName, sourceStream.WaveFormat);
+            waveWriter = new NAudio.Wave.WaveFileWriter(savefile.FileName, sourceStream.WaveFormat);
 
             sourceStream.StartRecording();
         }
@@ -76,9 +85,6 @@ namespace AudioQualityAnalysisTool
             waveWriter.Flush();
         }
 
-        private NAudio.Wave.WaveFileReader wave = null;
-        private NAudio.Wave.DirectSoundOut output = null;
-
         private void Playbtn_Click(object sender, EventArgs e)
         {
             if (sourceList.SelectedItems.Count == 0)
@@ -87,7 +93,7 @@ namespace AudioQualityAnalysisTool
                 return;
             }
 
-            OpenFileDialog openfile = new OpenFileDialog();
+            openfile = new OpenFileDialog();
             openfile.Filter = "Wave File (*.wav) | *.wav;";
             if (openfile.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
@@ -95,6 +101,11 @@ namespace AudioQualityAnalysisTool
             Playbtn.Enabled = false;
             Stopbtn.Enabled = true;
 
+            PlayAudio();
+        }
+
+        private void PlayAudio()
+        {
             wave = new NAudio.Wave.WaveFileReader(openfile.FileName);
             output = new NAudio.Wave.DirectSoundOut();
             output.Init(new NAudio.Wave.WaveChannel32(wave));
