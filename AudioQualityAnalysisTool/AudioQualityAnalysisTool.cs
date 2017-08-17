@@ -104,7 +104,7 @@ namespace AudioQualityAnalysisTool
             Stopbtn.Enabled = false;
             timer.Enabled = false;
 
-            timer.Stop();
+            DisposeAll();
         }
 
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
@@ -149,7 +149,10 @@ namespace AudioQualityAnalysisTool
             Playbtn.Enabled = true;
             Loopbackbtn.Enabled = true;
             Stopbtn.Enabled = false;
+        }
 
+        private void DisposeAll()
+        {
             if (sourceStream != null)
             {
                 sourceStream.StopRecording();
@@ -181,7 +184,6 @@ namespace AudioQualityAnalysisTool
                 timer.Stop();
             }
         }
-
         private void Loopbackbtn_Click(object sender, EventArgs e)
         {
             if (sourceList.SelectedItems.Count == 0) return;
