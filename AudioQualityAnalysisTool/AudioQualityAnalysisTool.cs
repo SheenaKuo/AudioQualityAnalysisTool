@@ -59,6 +59,7 @@ namespace AudioQualityAnalysisTool
 
             Recordbtn.Enabled = false;
             Playbtn.Enabled = false;
+            Loopbackbtn.Enabled = false;
             Stopbtn.Enabled = true;
 
             RecordAudio();
@@ -99,11 +100,13 @@ namespace AudioQualityAnalysisTool
 
             Recordbtn.Enabled = true;
             Playbtn.Enabled = true;
+            Loopbackbtn.Enabled = true;
             Stopbtn.Enabled = false;
             timer.Enabled = false;
 
             timer.Stop();
         }
+
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;
@@ -126,6 +129,7 @@ namespace AudioQualityAnalysisTool
 
             Recordbtn.Enabled = false;
             Playbtn.Enabled = false;
+            Loopbackbtn.Enabled = false;
             Stopbtn.Enabled = true;
 
             PlayAudio();
@@ -143,6 +147,7 @@ namespace AudioQualityAnalysisTool
         {
             Recordbtn.Enabled = true;
             Playbtn.Enabled = true;
+            Loopbackbtn.Enabled = true;
             Stopbtn.Enabled = false;
 
             if (sourceStream != null)
@@ -175,6 +180,43 @@ namespace AudioQualityAnalysisTool
             {
                 timer.Stop();
             }
+        }
+
+        private void Loopbackbtn_Click(object sender, EventArgs e)
+        {
+            if (sourceList.SelectedItems.Count == 0) return;
+
+            openfile = new OpenFileDialog();
+            openfile.Filter = "Wave File (*.wav)|*.wav;";
+            if (openfile.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+            savefile = new SaveFileDialog();
+            savefile.FileName = "C:\\Users\\SheenaKuo\\Desktop\\Lost stars\\Loopback.wav";
+
+            Recordbtn.Enabled = false;
+            Playbtn.Enabled = false;
+            Loopbackbtn.Enabled = false;
+            Stopbtn.Enabled = true;
+
+            wave = new NAudio.Wave.WaveFileReader(openfile.FileName);
+            output = new NAudio.Wave.DirectSoundOut();
+            output.Init(new NAudio.Wave.WaveChannel32(wave));
+            output.Play();
+
+            int iDeviceNumber = sourceList.SelectedItems[0].Index;
+
+            sourceStream = new NAudio.Wave.WaveIn();
+            sourceStream.DeviceNumber = iDeviceNumber;
+            sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(44100, NAudio.Wave.WaveIn.GetCapabilities(iDeviceNumber).Channels);
+
+            sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
+            waveWriter = new NAudio.Wave.WaveFileWriter(savefile.FileName, sourceStream.WaveFormat);
+
+            sourceStream.StartRecording();
+
+            timer.Enabled = true;
+            timer.Interval = 10000;
+            timer.Tick += new EventHandler(timer_Tick);
         }
     }
 }

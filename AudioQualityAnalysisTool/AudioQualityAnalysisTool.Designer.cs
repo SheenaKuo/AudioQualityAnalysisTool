@@ -37,6 +37,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playbtn = new System.Windows.Forms.Button();
             this.Stopbtn = new System.Windows.Forms.Button();
+            this.Loopbackbtn = new System.Windows.Forms.Button();
             this.Recordbtn = new System.Windows.Forms.Button();
             this.Refreshbtn = new System.Windows.Forms.Button();
             this.AnalysisPage = new System.Windows.Forms.TabPage();
@@ -103,6 +104,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.Playbtn);
             this.splitContainer2.Panel2.Controls.Add(this.Stopbtn);
+            this.splitContainer2.Panel2.Controls.Add(this.Loopbackbtn);
             this.splitContainer2.Panel2.Controls.Add(this.Recordbtn);
             this.splitContainer2.Panel2.Controls.Add(this.Refreshbtn);
             this.splitContainer2.Size = new System.Drawing.Size(578, 233);
@@ -141,6 +143,16 @@
             this.Playbtn.Text = "Play";
             this.Playbtn.UseVisualStyleBackColor = true;
             this.Playbtn.Click += new System.EventHandler(this.Playbtn_Click);
+            //
+            // Loopbackbtn
+            //
+            this.Loopbackbtn.Location = new System.Drawing.Point(3, 178);
+            this.Loopbackbtn.Name = "Loopbackbtn";
+            this.Loopbackbtn.Size = new System.Drawing.Size(133, 27);
+            this.Loopbackbtn.TabIndex = 4;
+            this.Loopbackbtn.Text = "Loopback";
+            this.Loopbackbtn.UseVisualStyleBackColor = true;
+            this.Loopbackbtn.Click += new System.EventHandler(this.Loopbackbtn_Click);
             // 
             // Stopbtn
             // 
@@ -220,6 +232,7 @@
         private System.Windows.Forms.Button Recordbtn;
         private System.Windows.Forms.Button Refreshbtn;
         private System.Windows.Forms.Button Playbtn;
+        private System.Windows.Forms.Button Loopbackbtn;
     }
 }
 
